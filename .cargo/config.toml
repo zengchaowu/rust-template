@@ -1,3 +1,17 @@
+# 64位Windows构建目标
 [target.x86_64-pc-windows-gnu]
 linker = "x86_64-w64-mingw32-gcc"
 ar = "x86_64-w64-mingw32-gcc-ar"
+
+# 32位Windows构建目标
+[target.i686-pc-windows-gnu]
+linker = "i686-w64-mingw32-gcc"
+ar = "i686-w64-mingw32-gcc-ar"
+
+# Mac构建目标
+[target.x86_64-apple-darwin]
+# Mac通常不需要特殊配置，系统默认工具链已经足够
+
+# Mac ARM构建目标(M1/M2芯片)
+[target.aarch64-apple-darwin]
+# ARM Mac也使用系统默认工具链
