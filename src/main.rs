@@ -19,7 +19,7 @@ struct Args {
     max_depth: Option<usize>,
 
     /// 忽略的目录名称（多个目录用逗号分隔）
-    #[arg(short, long, default_value = ".git,target")]
+    #[arg(short, long, default_value = ".git,node_modules")]
     ignore: String,
 }
 
@@ -59,7 +59,7 @@ fn main() -> Result<()> {
         let entry = match entry {
             Ok(entry) => entry,
             Err(err) => {
-                eprintln!("警告：访问路径失败：{}", err);
+                // eprintln!("警告：访问路径失败：{}", err);
                 continue;
             }
         };
@@ -85,6 +85,6 @@ fn main() -> Result<()> {
         }
     }
 
-    println!("\n共找到 {} 个匹配的文件", found_count);
+    // println!("\n共找到 {} 个匹配的文件", found_count);
     Ok(())
 }
