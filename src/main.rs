@@ -54,11 +54,11 @@ fn main() -> Result<()> {
     }
 
     // 遍历目录并查找文件
-    let mut found_count = 0;
+    let mut _found_count = 0;
     for entry in walker {
         let entry = match entry {
             Ok(entry) => entry,
-            Err(err) => {
+            Err(_err) => {
                 // eprintln!("警告：访问路径失败：{}", err);
                 continue;
             }
@@ -79,7 +79,7 @@ fn main() -> Result<()> {
                 let ext_str = ext.to_string_lossy().to_string();
                 if extensions.iter().any(|e| e == &ext_str) {
                     println!("{}", entry.path().display());
-                    found_count += 1;
+                    _found_count += 1;
                 }
             }
         }
