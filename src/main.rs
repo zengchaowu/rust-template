@@ -19,7 +19,7 @@ struct Args {
     max_depth: Option<usize>,
 
     /// 忽略的目录名称（多个目录用逗号分隔）
-    #[arg(short, long, default_value = ".git,node_modules")]
+    #[arg(short, long, default_value = ".git,node_modules,$RECYCLE.BIN,.Trash,.DS_Store")]
     ignore: String,
 }
 
