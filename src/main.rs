@@ -63,13 +63,19 @@ fn main() -> Result<()> {
                 continue;
             }
         };
-
+        
         // 跳过被忽略的目录
         if entry.file_type().is_dir() {
-            if let Some(dir_name) = entry.path().file_name() {
-                if ignore_dirs.iter().any(|ignore| ignore == dir_name.to_string_lossy().as_ref()) {
-                    continue;
+            // 检查路径中的每一级目录是否在忽略列表中
+            let path = entry.path();
+            if path.components().any(|comp| {
+                if let Some(comp_str) = comp.as_os_str().to_str() {
+                    ignore_dirs.iter().any(|ignore| ignore.to_lowercase() == comp_str.to_lowercase())
+                } else {
+                    false
                 }
+            }) {
+                continue;
             }
         }
 
