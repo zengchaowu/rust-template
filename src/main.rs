@@ -63,7 +63,7 @@ fn main() -> Result<()> {
                 continue;
             }
         };
-        
+
         // 跳过被忽略的目录
         if entry.file_type().is_dir() {
             // 检查路径中的每一级目录是否在忽略列表中
@@ -77,6 +77,11 @@ fn main() -> Result<()> {
             }) {
                 continue;
             }
+        }
+
+        // 特殊处理Windows下的$RECYCLE.BIN文件夹（忽略大小写）
+        if entry.path().to_string_lossy().to_lowercase().contains("$recycle.bin") {
+            continue;
         }
 
         // 检查文件后缀
